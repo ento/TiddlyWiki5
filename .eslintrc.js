@@ -8,6 +8,12 @@ module.exports = {
 	"parserOptions": {
 		"ecmaVersion": 5
 	},
+	"overrides": [
+		{
+			"files": [ "editions/test/tiddlers/tests/**/*.js" ],
+			"env": { "jasmine": true }
+		}
+	],
 	"ignorePatterns": [
 		"boot/sjcl.js",
 		"core/modules/utils/base64-utf8/base64-utf8.module.js",
