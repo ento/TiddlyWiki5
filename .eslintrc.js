@@ -13,6 +13,14 @@ module.exports = {
 		"plugins/tiddlywiki/*/files/**/*.js"
 	],
 	"rules": {
+		"capitalized-comments": [
+			"error",
+			// Proper sentence capitalisation for comments
+			"always",
+			// First line must be capitalized,
+			// while subsequent comments are ignored.
+			{ "ignoreConsecutiveComments": true }
+		],
 		"indent": [
 			"error",
 			// Use tabs for indenting.
