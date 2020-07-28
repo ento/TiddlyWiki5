@@ -51,6 +51,29 @@ module.exports = {
 			 */
 			{ "outerIIFEBody": 0 }
 		],
+		"keyword-spacing": [
+			"error",
+			{
+				/* No space between "if" etc and brackets
+				   e.g.
+				   // Do:
+				   switch(param) {
+				   }
+
+				   // Don't:
+				   switch (param) {
+				   }
+				 */
+				"overrides": {
+					"catch": { "after": false },
+					"for": { "after": false },
+					"function": { "after": false },
+					"if": { "after": false },
+					"switch": { "after": false },
+					"while": { "after": false }
+				}
+			}
+		],
 		"linebreak-style": [
 			"error",
 			"unix"
