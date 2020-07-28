@@ -27,6 +27,8 @@ module.exports = {
 			// while subsequent comments are ignored.
 			{ "ignoreConsecutiveComments": true }
 		],
+		// Always use braces, even when optional
+		"curly": "error",
 		// Prefer strict equality checks
 		"eqeqeq": "error",
 		"indent": [
