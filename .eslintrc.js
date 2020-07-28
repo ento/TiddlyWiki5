@@ -71,6 +71,8 @@ module.exports = {
 			"error",
 			// Always use semicolons
 			"always"
-		]
+		],
+		// Always spaces around binary operators
+		"space-infix-ops": "error"
 	}
 };
