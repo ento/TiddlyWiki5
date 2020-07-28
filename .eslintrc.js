@@ -37,6 +37,13 @@ module.exports = {
 			"error",
 			"unix"
 		],
+		"no-multiple-empty-lines": [
+			"error",
+			// One blank line is used to separate blocks of code.
+			// Occasional blank lines are permitted within blocks for clarity,
+			// but should be avoided unless they solve a specific readability problem.
+			{ "max": 1 }
+		],
 		"quotes": [
 			"error",
 			// Double quotes are preferred over single quotes for string literals.
