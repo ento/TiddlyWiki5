@@ -9,6 +9,9 @@ module.exports = {
 	"parserOptions": {
 		"ecmaVersion": 11
 	},
+	"ignorePatterns": [
+		"plugins/tiddlywiki/*/files/**/*.js"
+	],
 	"rules": {
 		"indent": [
 			"error",
