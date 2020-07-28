@@ -27,6 +27,8 @@ module.exports = {
 			// while subsequent comments are ignored.
 			{ "ignoreConsecutiveComments": true }
 		],
+		// Prefer strict equality checks
+		"eqeqeq": "error",
 		"indent": [
 			"error",
 			// Use tabs for indenting.
