@@ -24,6 +24,17 @@ module.exports = {
 		"plugins/tiddlywiki/*/files/**/*.js"
 	],
 	"rules": {
+		/* // Do:
+		   if (foo) {
+		   } else {
+		   }
+		   // Don't:
+		   if (foo) {
+		   }
+		   else {
+		   }
+		*/
+		"brace-style": "error",
 		"capitalized-comments": [
 			"error",
 			// Proper sentence capitalisation for comments
