@@ -12,7 +12,23 @@ module.exports = {
 	"rules": {
 		"indent": [
 			"error",
-			"tab"
+			// Use tabs for indenting.
+			"tab",
+			/* // Do:
+			   (function(){
+
+			   export.foo = 1;
+
+			   })();
+
+			   // Don't:
+			   (function(){
+
+			   	export.foo = 1;
+
+			   })();
+			 */
+			{ "outerIIFEBody": 0 }
 		],
 		"linebreak-style": [
 			"error",
