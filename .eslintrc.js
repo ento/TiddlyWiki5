@@ -39,10 +39,12 @@ module.exports = {
 		],
 		"quotes": [
 			"error",
+			// Double quotes are preferred over single quotes for string literals.
 			"double"
 		],
 		"semi": [
 			"error",
+			// Always use semicolons
 			"always"
 		]
 	}
