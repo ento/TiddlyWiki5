@@ -2,12 +2,11 @@ module.exports = {
 	"env": {
 		"browser": true,
 		"commonjs": true,
-		"es2020": true,
 		"node": true
 	},
 	"extends": "eslint:recommended",
 	"parserOptions": {
-		"ecmaVersion": 11
+		"ecmaVersion": 5
 	},
 	"ignorePatterns": [
 		"boot/sjcl.js",
