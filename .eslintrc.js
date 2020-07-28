@@ -51,21 +51,35 @@ module.exports = {
 			"error",
 			// Use tabs for indenting.
 			"tab",
-			/* // Do:
-			   (function(){
+			{
+				/* // Do:
+				   switch(foo) {
+				   	case 1:
+				   	break;
+				   }
+				   // Don't:
+				   switch(foo) {
+				   case 1:
+				   break;
+				   }
+				*/
+				"SwitchCase": 1,
+				/* // Do:
+				   (function(){
 
-			   export.foo = 1;
+				   export.foo = 1;
 
-			   })();
+				   })();
 
-			   // Don't:
-			   (function(){
+				   // Don't:
+				   (function(){
 
-			   	export.foo = 1;
+				    	export.foo = 1;
 
-			   })();
-			 */
-			{ "outerIIFEBody": 0 }
+				   })();
+				*/
+				"outerIIFEBody": 0,
+			}
 		],
 		"keyword-spacing": [
 			"error",
