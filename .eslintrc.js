@@ -10,6 +10,12 @@ module.exports = {
 		"ecmaVersion": 11
 	},
 	"ignorePatterns": [
+		"boot/sjcl.js",
+		"core/modules/utils/base64-utf8/base64-utf8.module.js",
+		"core/modules/utils/base64-utf8/base64-utf8.module.min.js",
+		"core/modules/utils/diff-match-patch/diff_match_patch.js",
+		"core/modules/utils/diff-match-patch/diff_match_patch_uncompressed.js",
+		"core/modules/utils/dom/csscolorparser.js",
 		"plugins/tiddlywiki/*/files/**/*.js"
 	],
 	"rules": {
