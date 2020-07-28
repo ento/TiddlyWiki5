@@ -126,6 +126,13 @@ module.exports = {
 			"always"
 		],
 		// Always spaces around binary operators
-		"space-infix-ops": "error"
+		"space-infix-ops": "error",
+		// Disallow unused variables
+		"no-unused-vars": [
+			"error",
+			// Allow global variables, including those declared
+			// in /*global*/ comments to be unused
+			{ "vars": "local" }
+		]
 	}
 };
