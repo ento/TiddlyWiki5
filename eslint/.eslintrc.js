@@ -6,7 +6,8 @@ const path = require("path");
 module.exports = {
     root: true,
     extends: [
-        "eslint:recommended"
+        "eslint:recommended",
+        "./plugin/node_modules/eslint-config-airbnb-base/.eslintrc"
     ],
     env: {
         commonjs: true,
@@ -16,7 +17,20 @@ module.exports = {
     parserOptions: {
         ecmaVersion: 2020
     },
+    settings: {
+        "import/resolver": {
+            node: {
+                moduleDirectory: [
+                    path.join(__dirname, "plugin", "node_modules")
+                ]
+            }
+        }
+    },
     rules: {
+        "import/no-extraneous-dependencies": [
+            "error",
+            { packageDir: path.join(__dirname, "plugin") }
+        ],
         indent: ["error", 4], // Same as TiddlyWiki
         "max-len": ["error", 160], // Same as eslint
         quotes: ["error", "double"], // Same as TiddlyWiki
