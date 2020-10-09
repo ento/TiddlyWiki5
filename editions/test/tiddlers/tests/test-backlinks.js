@@ -20,7 +20,7 @@ describe('Backlinks tests', function() {
 			text: ''});
 
 		it('should have no backlinks', function() {
-			expect(wiki.filterTiddlers('TestIncoming +[backlinks[]]').join(',')).toBe('');
+			expect(wiki.filterTiddlers('TestIncoming +[backlinks[]]').join(',')).toBe('hello');
 		});
 	});
 
