@@ -80,21 +80,23 @@ exports.startup = function() {
 		$tw.modules.execute("$:/plugins/tiddlywiki/jasmine/jasmine-core/jasmine-core/boot.js");
 		jasmine = window.jasmine;
 	} else {
-		// Add missing properties to `jasmineCore`.
+		// Add missing properties to `jasmineCore` in order to call the Jasmine
+		// constructor in Node.js.
 		//
-		// In Node.js, `jasmineCore` is usually loaded automatically by
-		// calling `require('jasmine-core')`. What happens internally then
-		// is...
+		// The constructor loads the `jasmineCore` object automatically, if
+		// not explicitly specified, by calling `require('jasmine-core')`.
+		// What happens internally next is...
 		//
 		//   1. require('jasmine-core')
-		//      a. loads 'jasmine-core/jasmine-core.js'
+		//      a. loads the package's main script, 'jasmine-core/jasmine-core.js'
 		//         i. requires 'jasmine-core/jasmine.js'
 		//         ii. reads some extra files and returns a `jasmineCore` object
 		//
 		// Because we're in TiddlyWiki land, we really don't need step 1.a.ii.
+		//
 		// Since the `jasmineCore` variable already holds the result of 1.a.i,
 		// we'll add a few properties necessary for calling the Jasmine constructor
-		// in Node.js. The consructor function can be seen here:
+		// and pass it in explicitly. The consructor function can be seen here:
 		// https://github.com/jasmine/jasmine-npm/blob/v3.4.0/lib/jasmine.js#L10
 
 		// 'jasmine/jasmine.js' requires the `.boot()` function
