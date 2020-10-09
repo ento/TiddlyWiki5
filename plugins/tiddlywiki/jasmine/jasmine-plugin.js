@@ -108,7 +108,6 @@ exports.startup = function() {
 
 		var NodeJasmine = evalInContext("$:/plugins/tiddlywiki/jasmine/jasmine/jasmine.js");
 		nodeJasmineWrapper = new NodeJasmine({jasmineCore: jasmineCore});
-		nodeJasmineWrapper.configureDefaultReporter({});
 		jasmine = nodeJasmineWrapper.jasmine;
 	}
 	// Add Jasmine's DSL to our context
