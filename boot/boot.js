@@ -2509,7 +2509,7 @@ $tw.boot.isStartupTaskEligible = function(taskModule) {
 			}
 		}
 	}
-	// Check that all of the tasks that we must be performed after has been done
+	// Check that all of the tasks that must be performed after this task has been done
 	var after = taskModule.after;
 	if(after) {
 		for(t=0; t<after.length; t++) {
