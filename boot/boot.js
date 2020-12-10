@@ -2499,8 +2499,11 @@ $tw.boot.isStartupTaskEligible = function(taskModule) {
 		// Check that no other outstanding tasks must be executed before this one
 		for(t=0; t<remaining.length; t++) {
 			var task = remaining[t];
+			// If this remaining task needs to be executed before the one we're checking...
 			if(task.before && task.before.indexOf(name) !== -1) {
-				if(task.name || $tw.boot.disabledStartupModules.indexOf(name) !== -1) {
+				// and if the remaining task is not disabled...
+				if(!task.name || $tw.boot.disabledStartupModules.indexOf(name) === -1) {
+					// wait until the remaining task gets executed
 					return false;
 				}
 			}

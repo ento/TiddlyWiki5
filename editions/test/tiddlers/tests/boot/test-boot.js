@@ -128,6 +128,54 @@ if($tw.node) {
 					done();
 				}});
 			});
+			it("executes startup modules ordered by 'before'",function(done) {
+				var $tw = createTw();
+				var log = [];
+				$tw.modules.define("start1","startup",{
+					name: "start1",
+					startup: function() {
+						log.push("start1");
+					},
+				});
+				$tw.modules.define("before1","startup",{
+					before: ["start1"],
+					startup: function() {
+						log.push("before1");
+					},
+				});
+				$tw.boot.execStartup({callback: function() {
+					expect(log).toEqual(["before1","start1"]);
+					done();
+				}});
+			});
+			it("executes async startup modules ordered by 'before'",function(done) {
+				var $tw = createTw();
+				var log = [];
+				$tw.modules.define("start1","startup",{
+					name: "start1",
+					synchronous: false,
+					startup: function(callback,) {
+						setTimeout(function(){
+							log.push("start1");
+							callback();
+						}, 0);
+					},
+				});
+				$tw.modules.define("before1","startup",{
+					before: ["start1"],
+					synchronous: false,
+					startup: function(callback) {
+						setTimeout(function(){
+							log.push("before1");
+							callback();
+						}, 0);
+					},
+				});
+				$tw.boot.execStartup({callback: function() {
+					expect(log).toEqual(["before1","start1"]);
+					done();
+				}});
+			});
 		});
 	});
 }
