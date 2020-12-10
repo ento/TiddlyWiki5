@@ -105,6 +105,29 @@ if($tw.node) {
 					done();
 				}});
 			});
+			it("executes startup modules ordered by 'after' even if platform does not match",function(done) {
+				var $tw = createTw();
+				var log = [];
+				$tw.modules.define("after2","startup",{
+					after: ["start2"],
+					startup: function() {
+						log.push("after2");
+					},
+				});
+				$tw.modules.define("start2","startup",{
+					name: "start2",
+					platforms: ["browser"],
+					startup: function() {
+						log.push("start2");
+					},
+				});
+				$tw.boot.execStartup({callback: function() {
+					// "start2" always gets skipped because this test suite is
+					// only run in Node and "start2" is only run in the browser
+					expect(log).toEqual(["after2"]);
+					done();
+				}});
+			});
 		});
 	});
 }

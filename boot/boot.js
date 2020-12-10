@@ -2439,13 +2439,28 @@ $tw.boot.executeNextStartupTask = function(callback) {
 			$tw.boot.log(s.join(" "));
 			// Execute task
 			if(!$tw.utils.hop(task,"synchronous") || task.synchronous) {
-				task.startup();
+				// Run the startup function only if the platform is correct
+				if($tw.boot.doesTaskMatchPlatform(task)) {
+					task.startup();
+				}
+				// Mark the module as executed even if the platform does not match;
+				// This way, modules that need to be executed before/after other
+				// module(s) can specify dependencies without needing the knowledge
+				// of which platforms those dependencies will run on.
 				if(task.name) {
 					$tw.boot.executedStartupModules[task.name] = true;
 				}
 				return $tw.boot.executeNextStartupTask(callback);
 			} else {
-				task.startup(asyncTaskCallback);
+				// Run the startup function only if the platform is correct
+				if($tw.boot.doesTaskMatchPlatform(task)) {
+					task.startup(asyncTaskCallback);
+				} else {
+					// Otherwise, move onto the next task while marking the task
+					// as executed. See comment for the synchronous branch above
+					// for context.
+					asyncTaskCallback();
+				}
 				return true;
 			}
 		}
@@ -2474,10 +2489,6 @@ $tw.boot.doesTaskMatchPlatform = function(taskModule) {
 
 $tw.boot.isStartupTaskEligible = function(taskModule) {
 	var t;
-	// Check that the platform is correct
-	if(!$tw.boot.doesTaskMatchPlatform(taskModule)) {
-		return false;
-	}
 	var name = taskModule.name,
 		remaining = $tw.boot.remainingStartupModules;
 	if(name) {
@@ -2489,7 +2500,7 @@ $tw.boot.isStartupTaskEligible = function(taskModule) {
 		for(t=0; t<remaining.length; t++) {
 			var task = remaining[t];
 			if(task.before && task.before.indexOf(name) !== -1) {
-				if($tw.boot.doesTaskMatchPlatform(task) || (task.name && $tw.boot.disabledStartupModules.indexOf(name) !== -1)) {
+				if(task.name || $tw.boot.disabledStartupModules.indexOf(name) !== -1) {
 					return false;
 				}
 			}
